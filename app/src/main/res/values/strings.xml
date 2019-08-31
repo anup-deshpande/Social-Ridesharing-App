@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="app_name">Chatroom</string>
+    <string name="btnLogin_str">Login</string>
+    <string name="btnSignUp_str">Sign Up</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="hint_fn">Enter First Name</string>
+    <string name="hint_ln">Enter Last Name</string>
+    <string name="gender_label">Gender</string>
+    <string name="hint_city">Enter City</string>
+    <string name="text_SignUp">Sign Up</string>
+    <string name="txt_back">Back</string>
+    <string name="hint_email">Enter Email </string>
+    <string name="hint_pass">Enter Password</string>
+    <string name="hint_retypePass">Retype Password</string>
+    <string name="txtLabel">Meet and Greet</string>
+    <string-array name="spinnerValues">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="str_labelChatroom">List of Chatrooms</string>
+</resources>

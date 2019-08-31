@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile"></item>
+
+        <item android:id="@+id/user"
+            android:icon="@drawable/ic_user"
+            android:title="Userlist"></item>
+
+        <item android:id="@+id/chatroom"
+            android:icon="@drawable/ic_chatroom"
+            android:title="Chatroom"></item>
+
+    </group>
+
+</menu>
