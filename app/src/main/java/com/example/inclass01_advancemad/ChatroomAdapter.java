@@ -37,16 +37,19 @@ import java.util.List;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-        pos = position;
+        System.out.println("position" + position);
+        //pos = position;
         chatroom= chatroomArrayList.get(position);
         if(chatroom!=null) {
             holder.txtChatroomName.setText(chatroom.chatroomName.toString().trim());
             holder.imgJoinChatroom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    task_interface.joinChatroom(chatroom);
+
+                    //System.out.println("position" + position);
+                    task_interface.joinChatroom(chatroomArrayList.get(position));
 
 
                 }
@@ -69,12 +72,7 @@ import java.util.List;
             super(itemView);
             txtChatroomName= (TextView)itemView.findViewById(R.id.chatroom_item_name);
             imgJoinChatroom= (ImageView)itemView.findViewById(R.id.chatroom_join_button);
-            imgJoinChatroom.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
 
         }
     }
