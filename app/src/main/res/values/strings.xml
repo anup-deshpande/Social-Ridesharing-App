@@ -21,6 +21,7 @@
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="str_labelChatroom">List of Chatrooms</string>
+    <string name="str_labelProfile">Profile</string>
     <string name="user_list">List of Users</string>
     <string name="profile">Profile</string>
     <string name="WelcomeUProfile">Welcome to User Profile!</string>

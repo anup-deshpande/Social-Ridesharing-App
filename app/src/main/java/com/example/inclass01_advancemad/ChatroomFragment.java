@@ -45,6 +45,7 @@ public class ChatroomFragment extends Fragment implements IDoTask {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v=inflater.inflate(R.layout.fragment_chatroom,container,false);
+        getActivity().setTitle(R.string.str_labelChatroom);
 
         mroot= FirebaseDatabase.getInstance().getReference();
         mauth= FirebaseAuth.getInstance();

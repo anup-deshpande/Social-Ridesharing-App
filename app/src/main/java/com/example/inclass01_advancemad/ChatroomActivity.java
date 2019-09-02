@@ -60,8 +60,8 @@ public class ChatroomActivity extends AppCompatActivity implements NavigationVie
         setUpNavigationBar();
         if(savedInstanceState==null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new ProfileFragment()).commit();
-            navigationView.setCheckedItem(R.id.profile);
+                    new ChatroomFragment()).commit();
+            navigationView.setCheckedItem(R.id.chatroom);
         }
 
         userId =firebaseUser.getUid();

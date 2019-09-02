@@ -54,6 +54,8 @@ public class ProfileFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_profile,container,false);
 
+        getActivity().setTitle(R.string.str_labelProfile);
+
         userName = v.findViewById(R.id.etUname);
         lastName = v.findViewById(R.id.etLastName);
         city = v.findViewById(R.id.etCity);
