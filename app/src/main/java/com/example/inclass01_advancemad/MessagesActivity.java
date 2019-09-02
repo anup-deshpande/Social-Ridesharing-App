@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -57,6 +58,13 @@ public class MessagesActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter rec_adapter;
     RecyclerView.LayoutManager rec_layout;
+
+    ArrayList<User> activeUserList;
+    RecyclerView activeUserrecyclerView;
+    RecyclerView.Adapter activeUser_Rec_Adapter;
+    RecyclerView.LayoutManager activeUser_Rec_Layout;
+
+
     final int PICK_IMAGE_REQUEST = 71;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +78,7 @@ public class MessagesActivity extends AppCompatActivity {
         mauth=FirebaseAuth.getInstance();
         mauth.getCurrentUser();
         msg_list=new ArrayList<>();
+        activeUserList = new ArrayList<>();
         userId = mauth.getUid().toString();
         FirebaseUser firebaseUser=mauth.getCurrentUser();
         UserId=firebaseUser.getUid();
@@ -80,6 +89,14 @@ public class MessagesActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         rec_layout=new LinearLayoutManager(MessagesActivity.this);
         recyclerView.setLayoutManager(rec_layout);
+
+        activeUserrecyclerView = findViewById(R.id.recyclerActiveUsersList);
+        activeUserrecyclerView.setHasFixedSize(true);
+        activeUser_Rec_Layout = new LinearLayoutManager(MessagesActivity.this,LinearLayoutManager.HORIZONTAL,false);
+        activeUserrecyclerView.setLayoutManager(activeUser_Rec_Layout);
+
+        activeUser_Rec_Adapter = new activeUserListAdapter(activeUserList);
+        activeUserrecyclerView.setAdapter(activeUser_Rec_Adapter);
 
         btnSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,11 +112,42 @@ public class MessagesActivity extends AppCompatActivity {
                 addImage();
             }
         });
+
         getCurrentUser();
         getChatroomdetails();
         getMessages();
 
+        getActiveusers();
+
     }
+
+    public void getActiveusers(){
+
+        DatabaseReference msgRef = mroot.child("Chatroom/" + current_chatroom.chatroomId + "/userList");
+        msgRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null) {
+
+                    activeUserList.clear();
+
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        User user = child.getValue(User.class);
+                        activeUserList.add(user);
+                    }
+
+                    activeUser_Rec_Adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     public void getMessages()
     {
         DatabaseReference msgRef = mroot.child("Chatroom/" + current_chatroom.chatroomId + "/Messages");
