@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,35 +12,34 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class userListAdapter extends RecyclerView.Adapter<userListAdapter.ViewHolder> {
+public class activeUserListAdapter extends RecyclerView.Adapter<activeUserListAdapter.ViewHolder> {
 
-    static ArrayList<User> usersArrayList;
+    static ArrayList<User> activeUsersArrayList;
     static int position;
 
 
 
     static User user;
-    public userListAdapter(ArrayList<User> userArrayList)
+    public activeUserListAdapter(ArrayList<User> userArrayList)
     {
-        this.usersArrayList=userArrayList;
+        this.activeUsersArrayList = userArrayList;
     }
     @NonNull
     @Override
-    public userListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public activeUserListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.userlist_items,parent,false);
-        userListAdapter.ViewHolder viewHolder=new userListAdapter.ViewHolder(view);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.active_userlist_items,parent,false);
+        activeUserListAdapter.ViewHolder viewHolder=new activeUserListAdapter.ViewHolder(view);
         return viewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final userListAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final activeUserListAdapter.ViewHolder holder, final int position) {
 
 
-        user= usersArrayList.get(position);
+        user= activeUsersArrayList.get(position);
         if(user!=null) {
-            holder.user_name.setText(user.firstName + " "+user.lastName);
             Picasso.get().load(user.imageUrl).into(holder.user_image);
         }
 
@@ -51,18 +49,17 @@ public class userListAdapter extends RecyclerView.Adapter<userListAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return usersArrayList.size();
+        return activeUsersArrayList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView user_name;
+
         ImageView user_image;
 
 
         public ViewHolder(View itemView){
             super(itemView);
-            user_name= itemView.findViewById(R.id.user_name);
             user_image = itemView.findViewById(R.id.user_profileimage);
             itemView.setOnClickListener(this);
         }

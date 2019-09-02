@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/user_image"
+                android:id="@+id/user_profileimage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:scaleType="fitCenter"
@@ -41,7 +41,7 @@
                 android:layout_marginTop="10dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/user_image"
+                app:layout_constraintStart_toEndOf="@+id/user_profileimage"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
