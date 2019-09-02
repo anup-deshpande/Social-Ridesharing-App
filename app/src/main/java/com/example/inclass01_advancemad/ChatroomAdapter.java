@@ -18,13 +18,16 @@ import java.util.List;
 
         static ArrayList<Chatroom> chatroomArrayList;
         static IDoTask task_interface;
-        static int pos;
+        String userId;
+
 
         static Chatroom chatroom;
-        public ChatroomAdapter(ArrayList<Chatroom> chatroomArrayList, IDoTask i_task)
+        public ChatroomAdapter(ArrayList<Chatroom> chatroomArrayList, IDoTask i_task, String userId)
         {
             this.chatroomArrayList=chatroomArrayList;
             this.task_interface = i_task;
+            this.userId = userId;
+
         }
         @NonNull
     @Override
@@ -44,6 +47,17 @@ import java.util.List;
         chatroom= chatroomArrayList.get(position);
         if(chatroom!=null) {
             holder.txtChatroomName.setText(chatroom.chatroomName.toString().trim());
+            for(int i=0;i<chatroom.userList.size();i++)
+            {
+                if(userId.equals(chatroom.userList.get(i).userId))
+                {
+                    holder.imgJoinChatroom.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    holder.imgJoinChatroom.setVisibility(View.VISIBLE);
+                }
+            }
             holder.imgJoinChatroom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -51,6 +65,14 @@ import java.util.List;
                     //System.out.println("position" + position);
                     task_interface.joinChatroom(chatroomArrayList.get(position));
 
+
+                }
+            });
+
+            holder.txtChatroomName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    task_interface.goInChatroom(chatroomArrayList.get(position));
 
                 }
             });

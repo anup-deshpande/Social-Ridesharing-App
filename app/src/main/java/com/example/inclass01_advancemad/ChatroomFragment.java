@@ -1,5 +1,6 @@
 package com.example.inclass01_advancemad;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,7 +57,7 @@ public class ChatroomFragment extends Fragment implements IDoTask {
         recyclerView.setHasFixedSize(true);
         rec_layout=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(rec_layout);
-        rec_adapter=new ChatroomAdapter(chatroomArrayList,this);
+        rec_adapter=new ChatroomAdapter(chatroomArrayList,this, userId);
         recyclerView.setAdapter(rec_adapter);
         getCurrentUser();
         getChatroomDetails();
@@ -126,6 +127,17 @@ public class ChatroomFragment extends Fragment implements IDoTask {
 
     @Override
     public void joinChatroom(Chatroom chatroom) {
-        Log.d("Chatroom", chatroom.toString());
+        //Log.d("Chatroom", chatroom.toString());
+        chatroom.userList.add(current_user);
+        DatabaseReference chatroom_ref = mroot.child("Chatroom/" + chatroom.chatroomId);
+        chatroom_ref.setValue(chatroom);
+
+    }
+
+    @Override
+    public void goInChatroom(Chatroom chatroom) {
+        Intent intent = new Intent(getActivity(),MessagesActivity.class);
+        intent.putExtra("chatroom", chatroom);
+        startActivity(intent);
     }
 }

@@ -182,13 +182,21 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                userImageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        DatabaseReference users = mroot.child("Users");
+                        DatabaseReference current_user = users.child(userId);
+                        user.imageUrl= uri.toString();
+                        current_user.setValue(user);
+                        Toast.makeText(SignUpActivity.this, "The user has been created", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUpActivity.this, ChatroomActivity.class));
+                        //System.out.println("DOWNLOAD URL " + uri.toString());
+                    }
+                });
+               // System.out.println("DOWNLOAD URL " + userImageReference.getDownloadUrl().toString());
                 Log.d("xyz","success");
-                DatabaseReference users = mroot.child("Users");
-                DatabaseReference current_user = users.child(userId);
-                current_user.setValue(user);
 
-                Toast.makeText(SignUpActivity.this, "The user has been created", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SignUpActivity.this, ChatroomActivity.class));
 
 
             }

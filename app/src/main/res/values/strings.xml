@@ -1,5 +1,4 @@
 <resources>
-
     <string name="app_name">Chatroom</string>
     <string name="btnLogin_str">Login</string>
     <string name="btnSignUp_str">Sign Up</string>
@@ -15,12 +14,29 @@
     <string name="hint_pass">Enter Password</string>
     <string name="hint_retypePass">Retype Password</string>
     <string name="txtLabel">Meet and Greet</string>
+
+    <string name="btnSubmitStr">Submit</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="str_labelChatroom">List of Chatrooms</string>
+    <string name="user_list">List of Users</string>
+    <string name="profile">Profile</string>
+    <string name="WelcomeUProfile">Welcome to User Profile!</string>
+    <string name="userNameHint">Name</string>
+    <string name="uNameStr" />
+    <string name="lastNameHint">LastName</string>
+    <string name="lastNameStr" />
+    <string name="genderLabelStr">Gender</string>
+    <string name="cityHintStr">City</string>
+    <string name="cityStr" />
+    <string name="btnUpdateStr">Update</string>
+    <string name="btnCancelStr">Cancel</string>
+    <string name="btnForgotPasswordStr">Forgot Password? </string>
+    <string name="ProfileImageDesc" />
     <string-array name="spinnerValues">
         <item>Male</item>
         <item>Female</item>
     </string-array>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="str_labelChatroom">List of Chatrooms</string>
 </resources>

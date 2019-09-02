@@ -1,8 +1,9 @@
 package com.example.inclass01_advancemad;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Chatroom {
+public class Chatroom implements Serializable {
     public String chatroomId;
     public String chatroomName;
     public ArrayList<User> userList;

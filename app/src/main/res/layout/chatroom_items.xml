@@ -17,7 +17,6 @@
         android:layout_margin="5dp">
         >
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,10 +37,12 @@
 
             <TextView
                 android:id="@+id/chatroom_item_name"
-                android:layout_width="272dp"
+                android:layout_width="286dp"
                 android:layout_height="49dp"
                 android:layout_marginStart="16dp"
                 android:text="TextView"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/chatroom_join_button"
                 app:layout_constraintHorizontal_bias="0.375"
                 app:layout_constraintStart_toStartOf="parent"

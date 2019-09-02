@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,14 +26,24 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener mAuthListner;
     Button btnLogin;
     Button btnSignUp;
+    TextView forgotPasswordText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        forgotPasswordText = findViewById(R.id.forgot_password);
         btnLogin=(Button) findViewById(R.id.btnLogin);
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
         mauth = FirebaseAuth.getInstance();
+
+        forgotPasswordText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent forgotPasswordIntent = new Intent(getApplicationContext(),forgot_password.class);
+                startActivity(forgotPasswordIntent);
+            }
+        });
+
 
         mAuthListner=new FirebaseAuth.AuthStateListener() {
             @Override
