@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ShowProfileUser"
+            android:label="@string/title_activity_show_profile_user"
+            ></activity>
         <activity android:name=".forgot_password"></activity>
         <activity android:name=".MessagesActivity" />
         <activity

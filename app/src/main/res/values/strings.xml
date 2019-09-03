@@ -39,4 +39,16 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="title_activity_show_profile_user">ShowProfileUser</string>
+    <string name="uNameLabelSP">User Name:</string>
+    <string name="uNameSP" />
+    <string name="lNameLabelSP">LastName:</string>
+    <string name="lastNameSP" />
+    <string name="genderLabelSP">Gender:</string>
+    <string name="genderSP" />
+    <string name="cityLabelSP">City:</string>
+    <string name="citySP" />
+    <string name="emailLabelSP">Email Id:</string>
+    <string name="emailSP" />
+    <string name="btnBackSP">Go Back</string>
 </resources>

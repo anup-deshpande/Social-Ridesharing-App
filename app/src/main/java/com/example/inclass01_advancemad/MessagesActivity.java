@@ -38,7 +38,7 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.UUID;
 
-public class MessagesActivity extends AppCompatActivity {
+public class MessagesActivity extends AppCompatActivity implements IMessageTasks{
 
     DatabaseReference mroot;
     FirebaseStorage firebaseStorage;
@@ -80,6 +80,7 @@ public class MessagesActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         rec_layout=new LinearLayoutManager(MessagesActivity.this);
         recyclerView.setLayoutManager(rec_layout);
+        rec_adapter=new MessageAdapter(msg_list,this, userId);
 
         btnSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,16 +103,17 @@ public class MessagesActivity extends AppCompatActivity {
     }
     public void getMessages()
     {
-        DatabaseReference msgRef = mroot.child("Chatroom/" + current_chatroom.chatroomId + "/Messages");
+
+        DatabaseReference msgRef = mroot.child("Messages/" + current_chatroom.chatroomId );
         msgRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                msg_list.clear();
                 if(dataSnapshot!=null) {
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
                         Message message = child.getValue(Message.class);
                         Log.d("message" , message.toString());
                         msg_list.add(message);
-                        rec_adapter=new MessageAdapter(msg_list);
                         recyclerView.setAdapter(rec_adapter);
                     }
                 }
@@ -211,7 +213,7 @@ public class MessagesActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             msg.msgImageUrl = uri.toString();
-                            DatabaseReference messages=mroot.child("Chatroom/" + current_chatroom.chatroomId + "/Messages/" + msg.msgId);
+                            DatabaseReference messages=mroot.child("Messages/" + current_chatroom.chatroomId + "/" + msg.msgId);
                             messages.setValue(msg);
                             filePath=null;
                         }
@@ -232,9 +234,28 @@ public class MessagesActivity extends AppCompatActivity {
         else
         {
             msg.msgImageUrl = "NoImage";
-            DatabaseReference messages=mroot.child("Chatroom/" + current_chatroom.chatroomId + "/Messages/" + msg.msgId);
+            DatabaseReference messages=mroot.child("Messages/" + current_chatroom.chatroomId + "/" + msg.msgId);
             messages.setValue(msg);
 
+        }
+    }
+
+    @Override
+    public void likeMessage(Message message) {
+        if(!message.likeUsers.contains(current_user.userId)) {
+            message.likeUsers.add(current_user.userId);
+            DatabaseReference messages=mroot.child("Messages/" + current_chatroom.chatroomId + "/" + message.msgId);
+            messages.setValue(message);
+        }
+
+    }
+
+    @Override
+    public void dislikeMessage(Message message) {
+        if(message.likeUsers.contains(current_user.userId)) {
+            message.likeUsers.remove(current_user.userId);
+            DatabaseReference messages=mroot.child("Messages/" + current_chatroom.chatroomId + "/" + message.msgId);
+            messages.setValue(message);
         }
     }
 }

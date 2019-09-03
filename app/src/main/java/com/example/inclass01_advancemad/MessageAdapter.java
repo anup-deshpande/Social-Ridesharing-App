@@ -1,4 +1,5 @@
 package com.example.inclass01_advancemad;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     ArrayList<Message> message_list;
     Message message;
+    IMessageTasks msg_interface;
+    String userId;
 
-    public MessageAdapter(ArrayList<Message> messageList)
+    public MessageAdapter(ArrayList<Message> messageList, IMessageTasks messageInterface, String userId)
     {
         this.message_list = messageList;
+        this.msg_interface = messageInterface;
+        this.userId= userId;
     }
 
     @NonNull
@@ -36,7 +41,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -53,11 +58,44 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             }
             holder.user_name.setText(message.userName.trim());
             holder.msg_text.setText(message.msgText.trim());
+            if(message.likeUsers.contains(userId))
+            {
+                holder.msg_like.setImageResource(R.drawable.imglike);
+            }else
+            {
+                holder.msg_like.setImageResource(R.drawable.imgnotlike);
+            }
+
+            if(message.likeUsers!=null)
+            {
+                holder.msg_likeCount.setText(String.valueOf(message.likeUsers.size()));
+            }
+
             if(!holder.msg_image.equals("NoImage")) {
                 Picasso.get().load(message.msgImageUrl).into(holder.msg_image);
             }
             Picasso.get().load(message.userProfile).into(holder.user_image);
         }
+        holder.msg_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(message_list.get(position).likeUsers.contains(userId))
+                {
+
+                    Log.d("click", "CLICKED NOT LIKE");
+                    holder.msg_like.setImageResource(R.drawable.imgnotlike);
+                    msg_interface.dislikeMessage(message_list.get(position));
+                }
+                else {
+
+                    Log.d("click", "CLICKED LIKE");
+                    holder.msg_like.setImageResource(R.drawable.imglike);
+                    msg_interface.likeMessage(message_list.get(position));
+                }
+
+            }
+        });
     }
 
     @Override
@@ -68,12 +106,17 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView user_image;
         ImageView msg_image;
+        ImageView msg_like;
         TextView msg_text;
         TextView msg_time;
         TextView user_name;
+        TextView msg_likeCount;
+
         public ViewHolder(View itemView){
             super(itemView);
             user_image = itemView.findViewById(R.id.msg_userProfile);
+            msg_like = itemView.findViewById(R.id.msg_LikeButton);
+            msg_likeCount= itemView.findViewById(R.id.msgLikeCount);
             msg_image = itemView.findViewById(R.id.msg_image);
             msg_text = itemView.findViewById(R.id.msg_text);
             msg_time = itemView.findViewById(R.id.msg_time);
