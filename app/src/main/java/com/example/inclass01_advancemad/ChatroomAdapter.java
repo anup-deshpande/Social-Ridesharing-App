@@ -15,19 +15,15 @@ import java.util.List;
 
     public class ChatroomAdapter extends RecyclerView.Adapter<ChatroomAdapter.ViewHolder>{
 
-
         static ArrayList<Chatroom> chatroomArrayList;
         static IDoTask task_interface;
         String userId;
-
-
         static Chatroom chatroom;
         public ChatroomAdapter(ArrayList<Chatroom> chatroomArrayList, IDoTask i_task, String userId)
         {
             this.chatroomArrayList=chatroomArrayList;
             this.task_interface = i_task;
             this.userId = userId;
-
         }
         @NonNull
     @Override
@@ -47,25 +43,26 @@ import java.util.List;
         chatroom= chatroomArrayList.get(position);
         if(chatroom!=null) {
             holder.txtChatroomName.setText(chatroom.chatroomName.toString().trim());
+            boolean flag= false;
             for(int i=0;i<chatroom.userList.size();i++)
             {
                 if(userId.equals(chatroom.userList.get(i).userId))
                 {
-                    holder.imgJoinChatroom.setVisibility(View.INVISIBLE);
+                    flag = true;
+                    break;
                 }
-                else
-                {
-                    holder.imgJoinChatroom.setVisibility(View.VISIBLE);
-                }
+
             }
+            if(flag)
+            {
+                holder.imgJoinChatroom.setVisibility(View.INVISIBLE);
+            }
+
             holder.imgJoinChatroom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     //System.out.println("position" + position);
                     task_interface.joinChatroom(chatroomArrayList.get(position));
-
-
                 }
             });
 
@@ -73,7 +70,6 @@ import java.util.List;
                 @Override
                 public void onClick(View view) {
                     task_interface.goInChatroom(chatroomArrayList.get(position));
-
                 }
             });
         }
@@ -94,8 +90,6 @@ import java.util.List;
             super(itemView);
             txtChatroomName= (TextView)itemView.findViewById(R.id.chatroom_item_name);
             imgJoinChatroom= (ImageView)itemView.findViewById(R.id.chatroom_join_button);
-
-
         }
     }
 

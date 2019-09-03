@@ -1,5 +1,7 @@
 package com.example.inclass01_advancemad;
 
+import java.util.ArrayList;
+
 public class Message {
 
     public String msgId;
@@ -10,6 +12,12 @@ public class Message {
     public String msgImageUrl;
     public String msgText;
     public String msgTime;
+    public ArrayList<String> likeUsers;
+
+    public Message()
+    {
+        this.likeUsers=new ArrayList<>();
+    }
 
     @Override
     public String toString() {

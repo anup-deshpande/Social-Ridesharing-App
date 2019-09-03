@@ -17,7 +17,7 @@
         android:ems="10"
         android:hint="@string/email_hint"
         android:inputType="textPersonName"
-        android:text="joey.trib@gmail.com"
+        android:text="chandler@gmail.com"
         app:layout_constraintBottom_toTopOf="@+id/editPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"

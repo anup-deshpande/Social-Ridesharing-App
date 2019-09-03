@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/msg_image"
-                android:layout_width="97dp"
-                android:layout_height="89dp"
+                android:layout_width="144dp"
+                android:layout_height="110dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,31 +32,32 @@
 
             <TextView
                 android:id="@+id/msg_text"
-                android:layout_width="260dp"
-                android:layout_height="88dp"
+                android:layout_width="215dp"
+                android:layout_height="102dp"
                 android:layout_marginTop="16dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.529"
                 app:layout_constraintStart_toEndOf="@+id/msg_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/msg_UserName"
-                android:layout_width="99dp"
+                android:layout_width="97dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:text="TextView"
                 app:layout_constraintStart_toEndOf="@+id/msg_userProfile"
                 app:layout_constraintTop_toBottomOf="@+id/msg_text" />
 
             <TextView
                 android:id="@+id/msg_time"
-                android:layout_width="187dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="85dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/msg_UserName"
                 app:layout_constraintTop_toBottomOf="@+id/msg_text" />
 
@@ -69,6 +70,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/msg_image"
                 app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/msgLikeCount"
+                android:layout_width="41dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="24dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/msg_LikeButton"
+                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintStart_toEndOf="@+id/msg_time"
+                app:layout_constraintTop_toBottomOf="@+id/msg_text" />
+
+            <ImageView
+                android:id="@+id/msg_LikeButton"
+                android:layout_width="38dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/msg_text"
+                app:srcCompat="@drawable/imgnotlike" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
