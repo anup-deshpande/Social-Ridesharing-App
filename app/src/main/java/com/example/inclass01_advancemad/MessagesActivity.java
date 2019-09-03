@@ -59,6 +59,7 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
     RecyclerView.Adapter rec_adapter;
     RecyclerView.LayoutManager rec_layout;
 
+    ArrayList<User> UserList;
     ArrayList<User> activeUserList;
     RecyclerView activeUserrecyclerView;
     RecyclerView.Adapter activeUser_Rec_Adapter;
@@ -71,13 +72,13 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
-
         mroot= FirebaseDatabase.getInstance().getReference();
         firebaseStorage=FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
         mauth=FirebaseAuth.getInstance();
         mauth.getCurrentUser();
         msg_list=new ArrayList<>();
+        UserList = new ArrayList<>();
         activeUserList = new ArrayList<>();
         userId = mauth.getUid().toString();
         FirebaseUser firebaseUser=mauth.getCurrentUser();
@@ -117,10 +118,33 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
         getCurrentUser();
         getChatroomdetails();
         getMessages();
-
+        getUserList();
         getActiveusers();
 
     }
+
+    public void getUserList()
+    {
+        DatabaseReference myRef = mroot.child("Users/");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot);
+
+                UserList.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    User user = postSnapshot.getValue(User.class);
+                    UserList.add(user);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     public void getActiveusers(){
 

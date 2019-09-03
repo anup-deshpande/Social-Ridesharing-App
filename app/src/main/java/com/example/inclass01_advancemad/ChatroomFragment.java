@@ -129,9 +129,11 @@ public class ChatroomFragment extends Fragment implements IDoTask {
     @Override
     public void joinChatroom(Chatroom chatroom) {
         //Log.d("Chatroom", chatroom.toString());
+
+        System.out.println("Chatroom.userList : "+ chatroom.userList );
+        DatabaseReference chatroom_ref = mroot.child("Chatroom/" + chatroom.chatroomId + "/userList");
+        chatroom_ref.child(""+(chatroom.userList.size())).setValue(current_user);
         chatroom.userList.add(current_user);
-        DatabaseReference chatroom_ref = mroot.child("Chatroom/" + chatroom.chatroomId);
-        chatroom_ref.setValue(chatroom);
 
     }
 

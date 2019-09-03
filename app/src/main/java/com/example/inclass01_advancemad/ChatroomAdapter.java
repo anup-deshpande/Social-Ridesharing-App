@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,14 +63,33 @@ import java.util.List;
                 @Override
                 public void onClick(View view) {
                     //System.out.println("position" + position);
-                    task_interface.joinChatroom(chatroomArrayList.get(position));
+                    task_interface.joinChatroom(chatroomArrayList.get(holder.getAdapterPosition()));
                 }
             });
 
             holder.txtChatroomName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    task_interface.goInChatroom(chatroomArrayList.get(position));
+                    chatroom = chatroomArrayList.get(holder.getAdapterPosition());
+                    boolean flag = false;
+                    for(int i=0;i<chatroom.userList.size();i++)
+                    {
+                        if(userId.equals(chatroom.userList.get(i).userId))
+                        {
+                            flag = true;
+                            break;
+                        }
+
+                    }
+                    if(flag == true)
+                    {
+
+                        task_interface.goInChatroom(chatroomArrayList.get(holder.getAdapterPosition()));
+                    }else{
+                        Toast.makeText(view.getContext(),"Please join the chatroom to read messages",Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
             });
         }
