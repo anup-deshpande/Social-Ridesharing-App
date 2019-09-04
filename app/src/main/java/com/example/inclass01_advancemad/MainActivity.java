@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener mAuthListner;
     Button btnLogin;
     Button btnSignUp;
+
     TextView forgotPasswordText;
 
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin=(Button) findViewById(R.id.btnLogin);
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
         mauth = FirebaseAuth.getInstance();
+        setTitle("Login");
 
         forgotPasswordText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
     {
         EditText editEmail=(EditText)findViewById(R.id.editEmail);
         EditText editPassword=(EditText)findViewById(R.id.editPassword);
+        TextInputLayout editEmailLayout = findViewById(R.id.email_text_input_layout);
+
         String email=editEmail.getText().toString();
         String password=editPassword.getText().toString();
         if (editEmail.getText().toString().trim().length() == 0) {
