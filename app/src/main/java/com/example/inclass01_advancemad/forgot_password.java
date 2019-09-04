@@ -24,6 +24,7 @@ public class forgot_password extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+        setTitle(R.string.btnForgotPasswordStr);
 
         cancelButton = findViewById(R.id.btn_cancel);
         submitButton = findViewById(R.id.btn_submit);

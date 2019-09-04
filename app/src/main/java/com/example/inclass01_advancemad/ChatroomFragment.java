@@ -81,6 +81,7 @@ public class ChatroomFragment extends Fragment implements IDoTask {
                     Date date = Calendar.getInstance().getTime();
                     final String mydate = dateFormat.format(date);
 
+                    txtChatroomName.setText("");
                     String chatroomId = UUID.randomUUID().toString();
                     DatabaseReference chatroom_ref = mroot.child("Chatroom");
                     DatabaseReference new_chatroom = chatroom_ref.child(chatroomId);

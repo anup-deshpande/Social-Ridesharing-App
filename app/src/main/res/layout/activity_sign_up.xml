@@ -6,124 +6,134 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-    <EditText
-        android:id="@+id/user_FirstName"
-        android:layout_width="360dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/hint_fn"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_PROFILE" />
-
-    <EditText
-        android:id="@+id/user_LastName"
-        android:layout_width="360dp"
-        android:layout_height="44dp"
-        android:ems="10"
-        android:hint="@string/hint_ln"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/user_FirstName"
-        app:layout_constraintTop_toBottomOf="@+id/user_FirstName" />
-
-    <Spinner
-        android:id="@+id/user_genderSpinner"
-        android:layout_width="230dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtGender"
-        app:layout_constraintTop_toBottomOf="@+id/user_editRetypePass" />
-
-    <EditText
-        android:id="@+id/userCIty"
-        android:layout_width="360dp"
-        android:layout_height="46dp"
-        android:ems="10"
-        android:hint="@string/hint_city"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/user_editRetypePass"
-        app:layout_constraintTop_toBottomOf="@+id/user_genderSpinner" />
-
-    <Button
-        android:id="@+id/buttonSignUp"
-        android:layout_width="139dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/text_SignUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userCIty" />
-
-    <Button
-        android:id="@+id/buttonBacktoMain"
-        android:layout_width="137dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="52dp"
-        android:text="@string/txt_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonSignUp"
-        app:layout_constraintTop_toBottomOf="@+id/userCIty" />
-
-    <ImageView
-        android:id="@+id/user_PROFILE"
-        android:layout_width="163dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/newuser" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/user_editEmail"
-        android:layout_width="360dp"
-        android:layout_height="44dp"
-        android:ems="10"
-        android:hint="@string/hint_email"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/user_LastName"
-        app:layout_constraintTop_toBottomOf="@+id/user_LastName" />
+        <Button
+            android:id="@+id/buttonSignUp"
+            android:layout_width="139dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_SignUp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userCIty" />
 
-    <EditText
-        android:id="@+id/user_editPassword"
-        android:layout_width="360dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="@string/hint_pass"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/user_editEmail"
-        app:layout_constraintTop_toBottomOf="@+id/user_editEmail" />
+        <Button
+            android:id="@+id/buttonBacktoMain"
+            android:layout_width="137dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="52dp"
+            android:text="@string/txt_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/buttonSignUp"
+            app:layout_constraintTop_toBottomOf="@+id/userCIty" />
 
-    <EditText
-        android:id="@+id/user_editRetypePass"
-        android:layout_width="360dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:hint="@string/hint_retypePass"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/user_editPassword"
-        app:layout_constraintTop_toBottomOf="@+id/user_editPassword" />
+        <EditText
+            android:id="@+id/user_FirstName"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="@string/hint_fn"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_PROFILE" />
 
-    <TextView
-        android:id="@+id/txtGender"
-        android:layout_width="91dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/gender_label"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/user_editRetypePass"
-        app:layout_constraintTop_toBottomOf="@+id/user_editRetypePass" />
+        <EditText
+            android:id="@+id/user_LastName"
+            android:layout_width="360dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="@string/hint_ln"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/user_FirstName"
+            app:layout_constraintTop_toBottomOf="@+id/user_FirstName" />
+
+        <EditText
+            android:id="@+id/userCIty"
+            android:layout_width="360dp"
+            android:layout_height="46dp"
+            android:ems="10"
+            android:hint="@string/hint_city"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/user_editRetypePass"
+            app:layout_constraintTop_toBottomOf="@+id/user_genderSpinner" />
+
+        <EditText
+            android:id="@+id/user_editEmail"
+            android:layout_width="360dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:hint="@string/hint_email"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/user_LastName"
+            app:layout_constraintTop_toBottomOf="@+id/user_LastName" />
+
+        <EditText
+            android:id="@+id/user_editPassword"
+            android:layout_width="360dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="@string/hint_pass"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toStartOf="@+id/user_editEmail"
+            app:layout_constraintTop_toBottomOf="@+id/user_editEmail" />
+
+        <EditText
+            android:id="@+id/user_editRetypePass"
+            android:layout_width="360dp"
+            android:layout_height="52dp"
+            android:ems="10"
+            android:hint="@string/hint_retypePass"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toStartOf="@+id/user_editPassword"
+            app:layout_constraintTop_toBottomOf="@+id/user_editPassword" />
+
+        <ImageView
+            android:id="@+id/user_PROFILE"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/newuser" />
+
+        <Spinner
+            android:id="@+id/user_genderSpinner"
+            android:layout_width="230dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtGender"
+            app:layout_constraintTop_toBottomOf="@+id/user_editRetypePass" />
+
+        <TextView
+            android:id="@+id/txtGender"
+            android:layout_width="91dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/gender_label"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/user_editRetypePass"
+            app:layout_constraintTop_toBottomOf="@+id/user_editRetypePass" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
