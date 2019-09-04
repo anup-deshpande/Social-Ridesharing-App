@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,7 @@ public class ChatroomFragment extends Fragment implements IDoTask {
         firebaseUser=mauth.getCurrentUser();
         userId =firebaseUser.getUid();
         chatroomArrayList = new ArrayList<>();
-        Button btnAddChatroom = (Button)v.findViewById(R.id.btnAddChatroom);
+        ImageView btnAddChatroom = v.findViewById(R.id.btnAddChatroom);
         final TextView txtChatroomName = (TextView)v.findViewById(R.id.editAddChatroom);
         recyclerView = (RecyclerView)v.findViewById(R.id.recyclerchatroom);
         recyclerView.setHasFixedSize(true);
@@ -80,8 +81,6 @@ public class ChatroomFragment extends Fragment implements IDoTask {
                     dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
                     Date date = Calendar.getInstance().getTime();
                     final String mydate = dateFormat.format(date);
-
-                    txtChatroomName.setText("");
                     String chatroomId = UUID.randomUUID().toString();
                     DatabaseReference chatroom_ref = mroot.child("Chatroom");
                     DatabaseReference new_chatroom = chatroom_ref.child(chatroomId);
@@ -93,6 +92,7 @@ public class ChatroomFragment extends Fragment implements IDoTask {
                     us.add(current_user);
                     chatroom.userList = us;
                     new_chatroom.setValue(chatroom);
+                    txtChatroomName.setText("");
                 }
 
 

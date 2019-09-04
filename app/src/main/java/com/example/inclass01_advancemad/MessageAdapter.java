@@ -79,7 +79,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 holder.msg_likeCount.setText(String.valueOf(message.likeUsers.size()));
             }
 
+
             if(!message.msgImageUrl.equals("NoImage")) {
+                holder.msg_image.setVisibility(View.VISIBLE);
                 Picasso.get().load(message.msgImageUrl).into(holder.msg_image);
             }else
             {
