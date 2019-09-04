@@ -20,13 +20,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_profileimage"
-                android:layout_width="71dp"
-                android:layout_height="71dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_marginStart="4dp"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="0.5dp"

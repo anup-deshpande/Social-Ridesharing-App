@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,6 +75,18 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
 
 
     final int PICK_IMAGE_REQUEST = 71;
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +120,8 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
         activeUser_Rec_Adapter = new activeUserListAdapter(activeUserList);
         activeUserrecyclerView.setAdapter(activeUser_Rec_Adapter);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         btnSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +147,8 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
         getMessages();
         getUserList();
         getActiveusers();
+
+
 
     }
 
@@ -159,7 +177,7 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
 
     public void getActiveusers(){
 
-        DatabaseReference msgRef = mroot.child("Chatroom/" + current_chatroom.chatroomId + "/userList");
+        DatabaseReference msgRef = mroot.child("Chatroom/" + current_chatroom.chatroomId + "/activeUserList");
         msgRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -285,6 +303,7 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
         if(getIntent().getExtras()!=null)
         {
             current_chatroom = (Chatroom)getIntent().getExtras().getSerializable("chatroom");
+            setTitle(current_chatroom.chatroomName);
         }
     }
 
@@ -413,4 +432,13 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        DatabaseReference activeUser_ref = mroot.child("Chatroom/" + current_chatroom.chatroomId + "/activeUserList");
+        activeUser_ref.child(""+current_user.userId).removeValue();
+    }
+
+
 }

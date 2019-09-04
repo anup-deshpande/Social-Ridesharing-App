@@ -157,12 +157,20 @@ public class ChatroomFragment extends Fragment implements IDoTask {
         chatroom_ref.child(""+(chatroom.userList.size())).setValue(current_user);
         chatroom.userList.add(current_user);
 
+
+
     }
 
     @Override
     public void goInChatroom(Chatroom chatroom) {
+
+        DatabaseReference activeUser_ref = mroot.child("Chatroom/" + chatroom.chatroomId + "/activeUserList");
+        activeUser_ref.child(""+current_user.userId).setValue(current_user);
+
         Intent intent = new Intent(getActivity(),MessagesActivity.class);
         intent.putExtra("chatroom", chatroom);
         startActivity(intent);
     }
+
+
 }

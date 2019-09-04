@@ -47,25 +47,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginBottom="8dp"
                 android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/msg_userProfile"
-                app:layout_constraintTop_toBottomOf="@+id/msg_image" />
+                app:layout_constraintTop_toTopOf="@+id/msg_userProfile" />
 
             <TextView
                 android:id="@+id/msg_time"
                 android:layout_width="wrap_content"
                 android:layout_height="19dp"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginBottom="8dp"
                 android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/msg_UserName"
-                app:layout_constraintTop_toBottomOf="@+id/msg_image" />
+                app:layout_constraintTop_toTopOf="@+id/msg_userProfile" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/msg_userProfile"
-                android:layout_width="58dp"
-                android:layout_height="55dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:civ_border_color="#FF000000"
@@ -78,20 +80,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                android:layout_marginBottom="8dp"
                 android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/msg_LikeButton"
                 app:layout_constraintHorizontal_bias="0.416"
                 app:layout_constraintStart_toEndOf="@+id/msg_time"
-                app:layout_constraintTop_toTopOf="@+id/msg_time" />
+                app:layout_constraintTop_toTopOf="@+id/msg_userProfile" />
 
             <ImageView
                 android:id="@+id/msg_LikeButton"
                 android:layout_width="38dp"
                 android:layout_height="37dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/msg_image"
+                app:layout_constraintTop_toTopOf="@+id/msg_userProfile"
                 app:srcCompat="@drawable/imgnotlike" />
 
             <ImageView

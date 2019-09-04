@@ -14,7 +14,11 @@
             android:label="@string/title_activity_show_profile_user"
             ></activity>
         <activity android:name=".forgot_password"></activity>
-        <activity android:name=".MessagesActivity" />
+        <activity android:name=".MessagesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.inclass01_advancemad.ChatroomActivity" />
+        </activity>
         <activity
             android:name=".ChatroomActivity"
             android:theme="@style/AppTheme.NoActionBar" />
