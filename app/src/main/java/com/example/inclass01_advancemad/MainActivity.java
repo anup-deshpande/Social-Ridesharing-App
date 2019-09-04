@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 if(firebaseAuth.getCurrentUser()!=null) // Now user is logged in
                 {
 
-                    //startActivity(new Intent(MainActivity.this,ChatroomActivity.class));
+                    startActivity(new Intent(MainActivity.this,ChatroomActivity.class));
                 }
             }
         };

@@ -58,6 +58,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             }
             holder.user_name.setText(message.userName.trim());
             holder.msg_text.setText(message.msgText.trim());
+            if(message.userId.equals(userId))
+            {
+                holder.msg_delete.setVisibility(View.VISIBLE);
+            }else{
+                holder.msg_delete.setVisibility(View.INVISIBLE);
+            }
+
+
             if(message.likeUsers.contains(userId))
             {
                 holder.msg_like.setImageResource(R.drawable.imglike);
@@ -71,8 +79,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 holder.msg_likeCount.setText(String.valueOf(message.likeUsers.size()));
             }
 
-            if(!holder.msg_image.equals("NoImage")) {
+            if(!message.msgImageUrl.equals("NoImage")) {
                 Picasso.get().load(message.msgImageUrl).into(holder.msg_image);
+            }else
+            {
+               // holder.msg_image.setImageResource(null);
+                holder.msg_image.setVisibility(View.GONE);
             }
             Picasso.get().load(message.userProfile).into(holder.user_image);
         }
@@ -83,16 +95,28 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 if(message_list.get(position).likeUsers.contains(userId))
                 {
 
-                    Log.d("click", "CLICKED NOT LIKE");
+                    //Log.d("click", "CLICKED NOT LIKE");
                     holder.msg_like.setImageResource(R.drawable.imgnotlike);
                     msg_interface.dislikeMessage(message_list.get(position));
                 }
                 else {
 
-                    Log.d("click", "CLICKED LIKE");
+                    //Log.d("click", "CLICKED LIKE");
                     holder.msg_like.setImageResource(R.drawable.imglike);
                     msg_interface.likeMessage(message_list.get(position));
                 }
+
+            }
+        });
+
+        holder.msg_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(message_list.size()!=0)
+                {
+                    msg_interface.deleteMessage(message_list.get(position));
+                }
+
 
             }
         });
@@ -107,6 +131,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         ImageView user_image;
         ImageView msg_image;
         ImageView msg_like;
+        ImageView msg_delete;
         TextView msg_text;
         TextView msg_time;
         TextView user_name;
@@ -117,6 +142,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             user_image = itemView.findViewById(R.id.msg_userProfile);
             msg_like = itemView.findViewById(R.id.msg_LikeButton);
             msg_likeCount= itemView.findViewById(R.id.msgLikeCount);
+            msg_delete = itemView.findViewById(R.id.msg_delete);
             msg_image = itemView.findViewById(R.id.msg_image);
             msg_text = itemView.findViewById(R.id.msg_text);
             msg_time = itemView.findViewById(R.id.msg_time);

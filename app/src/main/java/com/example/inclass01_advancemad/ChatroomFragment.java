@@ -2,12 +2,14 @@ package com.example.inclass01_advancemad;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +26,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 
 public class ChatroomFragment extends Fragment implements IDoTask {
@@ -67,17 +72,29 @@ public class ChatroomFragment extends Fragment implements IDoTask {
             @Override
             public void onClick(View view)
             {
-                String chatroomId = UUID.randomUUID().toString();
-                DatabaseReference chatroom_ref = mroot.child("Chatroom");
-                DatabaseReference new_chatroom = chatroom_ref.child(chatroomId);
-                Chatroom chatroom = new Chatroom();
-                chatroom.chatroomId = chatroomId;
-                chatroom.chatroomName = txtChatroomName.getText().toString().trim();
-                chatroom.time = "04/05/2010";
-                ArrayList<User> us = new ArrayList<>();
-                us.add(current_user);
-                chatroom.userList = us;
-                new_chatroom.setValue(chatroom);
+                if(txtChatroomName.getText().toString().isEmpty()){
+                    Toast.makeText(getActivity(),"Please enter Chatroom name", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+                    dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+                    Date date = Calendar.getInstance().getTime();
+                    final String mydate = dateFormat.format(date);
+
+                    String chatroomId = UUID.randomUUID().toString();
+                    DatabaseReference chatroom_ref = mroot.child("Chatroom");
+                    DatabaseReference new_chatroom = chatroom_ref.child(chatroomId);
+                    Chatroom chatroom = new Chatroom();
+                    chatroom.chatroomId = chatroomId;
+                    chatroom.chatroomName = txtChatroomName.getText().toString().trim();
+                    chatroom.time = mydate;
+                    ArrayList<User> us = new ArrayList<>();
+                    us.add(current_user);
+                    chatroom.userList = us;
+                    new_chatroom.setValue(chatroom);
+                }
+
+
             }
         });
 
@@ -101,6 +118,7 @@ public class ChatroomFragment extends Fragment implements IDoTask {
     }
     public void getChatroomDetails()
     {
+
         DatabaseReference chatroom_ref = mroot.child("Chatroom");
         chatroom_ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,8 +134,12 @@ public class ChatroomFragment extends Fragment implements IDoTask {
                 recyclerView.setHasFixedSize(true);
                 rec_layout=new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(rec_layout);
+                Parcelable recyclerViewState;
+                recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
                 //rec_adapter=new ChatroomAdapter(chatroomArrayList, this);
                 recyclerView.setAdapter(rec_adapter);
+
+                recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

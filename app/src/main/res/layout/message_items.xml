@@ -15,6 +15,7 @@
         app:cardCornerRadius="4dp"
         android:layout_margin="5dp">
     >
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -22,75 +23,88 @@
 
             <ImageView
                 android:id="@+id/msg_image"
-                android:layout_width="144dp"
-                android:layout_height="110dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="177dp"
+                android:layout_height="131dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                app:layout_constraintTop_toBottomOf="@+id/msg_text" />
 
             <TextView
                 android:id="@+id/msg_text"
-                android:layout_width="215dp"
-                android:layout_height="102dp"
+                android:layout_width="321dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.529"
-                app:layout_constraintStart_toEndOf="@+id/msg_image"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/msg_UserName"
-                android:layout_width="97dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="36dp"
                 android:text="TextView"
                 app:layout_constraintStart_toEndOf="@+id/msg_userProfile"
-                app:layout_constraintTop_toBottomOf="@+id/msg_text" />
+                app:layout_constraintTop_toBottomOf="@+id/msg_image" />
 
             <TextView
                 android:id="@+id/msg_time"
-                android:layout_width="85dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="36dp"
                 android:text="TextView"
                 app:layout_constraintStart_toEndOf="@+id/msg_UserName"
-                app:layout_constraintTop_toBottomOf="@+id/msg_text" />
+                app:layout_constraintTop_toBottomOf="@+id/msg_image" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/msg_userProfile"
-                android:layout_width="67dp"
-                android:layout_height="54dp"
+                android:layout_width="58dp"
+                android:layout_height="55dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="0.5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/msg_image"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:layout_constraintTop_toBottomOf="@+id/msg_image" />
 
             <TextView
                 android:id="@+id/msgLikeCount"
-                android:layout_width="41dp"
-                android:layout_height="39dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toStartOf="@+id/msg_LikeButton"
-                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintHorizontal_bias="0.416"
                 app:layout_constraintStart_toEndOf="@+id/msg_time"
-                app:layout_constraintTop_toBottomOf="@+id/msg_text" />
+                app:layout_constraintTop_toTopOf="@+id/msg_time" />
 
             <ImageView
                 android:id="@+id/msg_LikeButton"
                 android:layout_width="38dp"
                 android:layout_height="37dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/msg_text"
+                app:layout_constraintTop_toBottomOf="@+id/msg_image"
                 app:srcCompat="@drawable/imgnotlike" />
+
+            <ImageView
+                android:id="@+id/msg_delete"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.937"
+                app:layout_constraintStart_toEndOf="@+id/msg_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/delete" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

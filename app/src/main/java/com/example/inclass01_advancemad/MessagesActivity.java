@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,9 +34,13 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.UUID;
@@ -91,7 +97,7 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
         rec_layout=new LinearLayoutManager(MessagesActivity.this);
         recyclerView.setLayoutManager(rec_layout);
         rec_adapter=new MessageAdapter(msg_list,this, userId);
-
+        recyclerView.setAdapter(rec_adapter);
         activeUserrecyclerView = findViewById(R.id.recyclerActiveUsersList);
         activeUserrecyclerView.setHasFixedSize(true);
         activeUser_Rec_Layout = new LinearLayoutManager(MessagesActivity.this,LinearLayoutManager.HORIZONTAL,false);
@@ -104,7 +110,12 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
             @Override
             public void onClick(View view) {
 
-                sendMessage();
+                if(newMessage.getText().toString().isEmpty()){
+                    Toast.makeText(MessagesActivity.this,"Please enter message to send", Toast.LENGTH_SHORT).show();
+                }else{
+                    sendMessage();
+                }
+
             }
         });
 
@@ -173,6 +184,27 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
 
     }
 
+    public void sortlist()
+    {
+
+        Collections.sort(msg_list, new Comparator<Message>() {
+            @Override
+            public int compare(Message m1, Message m2) {
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+                dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+                Date m2_date=Calendar.getInstance().getTime();;
+                Date m1_date=Calendar.getInstance().getTime();;
+                try {
+                   m1_date=dateFormat.parse(m1.msgTime);
+                   m2_date=dateFormat.parse(m2.msgTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return m1_date.compareTo(m2_date);
+            }
+        });
+    }
     public void getMessages()
     {
 
@@ -186,9 +218,16 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
                         Message message = child.getValue(Message.class);
                         Log.d("message" , message.toString());
                         msg_list.add(message);
-                        recyclerView.setAdapter(rec_adapter);
                     }
                 }
+                sortlist();
+                Parcelable recyclerViewState;
+                recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
+
+                //recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+                //rec_adapter.notifyDataSetChanged();
+                recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
+                rec_adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -293,6 +332,7 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
 
                     ImageView imgAddImage=(ImageView) findViewById(R.id.imgAddImage);
                     imgAddImage.setImageResource(R.drawable.addimage);
+                    newMessage.setText("");
 
 
                 }
@@ -308,6 +348,7 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
             msg.msgImageUrl = "NoImage";
             DatabaseReference messages=mroot.child("Messages/" + current_chatroom.chatroomId + "/" + msg.msgId);
             messages.setValue(msg);
+            newMessage.setText("");
 
         }
     }
@@ -329,5 +370,47 @@ public class MessagesActivity extends AppCompatActivity implements IMessageTasks
             DatabaseReference messages=mroot.child("Messages/" + current_chatroom.chatroomId + "/" + message.msgId);
             messages.setValue(message);
         }
+    }
+
+    @Override
+    public void deleteMessage(Message message) {
+        StorageReference storageReference=firebaseStorage.getReference();
+        final DatabaseReference deleteRef=mroot.child("Messages/" + message.chatroomId + "/" + message.msgId);
+
+        if(!message.msgImageUrl.equals("NoImage"))
+        {
+
+            StorageReference setMsgRef=storageReference.child("ChatroomMessages/"+ message.chatroomId + "_" + message.msgId + ".jpg");
+            setMsgRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    deleteRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                        }
+                    });
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+
+
+        }
+        else
+        {
+            deleteRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                      Log.d("delete","NOT DELETED");
+                }
+            });
+        }
+
     }
 }

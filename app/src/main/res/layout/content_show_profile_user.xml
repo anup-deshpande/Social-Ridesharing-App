@@ -12,11 +12,11 @@
         android:id="@+id/tvUNameSP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="148dp"
         android:text="@string/uNameSP"
-        app:layout_constraintEnd_toEndOf="@+id/ivProfileSP"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfileSP" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvUNameLabelSP" />
 
     <ImageView
         android:id="@+id/ivProfileSP"
@@ -35,6 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/uNameLabelSP"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/tvUNameSP"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="@+id/ivProfileSP"
@@ -46,6 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/lNameLabelSP"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/tvLNameSP"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvUNameLabelSP"
@@ -55,10 +59,10 @@
         android:id="@+id/tvLNameSP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/lastNameSP"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tvUNameSP"
-        app:layout_constraintTop_toBottomOf="@+id/tvUNameSP" />
+        app:layout_constraintTop_toTopOf="@+id/tvLNameLabelSP" />
 
     <TextView
         android:id="@+id/tvGenderLabelSP"
@@ -66,6 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/genderLabelSP"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/tvGenderSP"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvLNameLabelSP"
@@ -75,10 +81,10 @@
         android:id="@+id/tvGenderSP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/genderSP"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tvLNameSP"
-        app:layout_constraintTop_toBottomOf="@+id/tvLNameSP" />
+        app:layout_constraintTop_toTopOf="@+id/tvGenderLabelSP" />
 
     <TextView
         android:id="@+id/tvCityLabelSP"
@@ -86,6 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/cityLabelSP"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/tvCitySP"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvGenderLabelSP"
@@ -95,10 +103,10 @@
         android:id="@+id/tvCitySP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/citySP"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tvGenderSP"
-        app:layout_constraintTop_toBottomOf="@+id/tvGenderSP" />
+        app:layout_constraintTop_toTopOf="@+id/tvCityLabelSP" />
 
     <TextView
         android:id="@+id/tvEmailLabelSP"
@@ -106,6 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/emailLabelSP"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/tvEmailSP"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvCityLabelSP"
@@ -115,18 +125,19 @@
         android:id="@+id/tvEmailSP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/emailSP"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tvCitySP"
-        app:layout_constraintTop_toBottomOf="@+id/tvCitySP" />
+        app:layout_constraintTop_toTopOf="@+id/tvEmailLabelSP" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="228dp"
         android:text="@string/btnBackSP"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivProfileSP" />
 </androidx.constraintlayout.widget.ConstraintLayout>

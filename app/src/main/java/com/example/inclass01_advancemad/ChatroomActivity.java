@@ -66,10 +66,6 @@ public class ChatroomActivity extends AppCompatActivity implements NavigationVie
 
         userId =firebaseUser.getUid();
         getUserDetails();
-
-
-
-
     }
 
     public void setUpNavigationBar()
@@ -147,6 +143,12 @@ public class ChatroomActivity extends AppCompatActivity implements NavigationVie
         }
     }
 
+    public void logout()
+    {
+        mauth.signOut();
+        finish();
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -166,6 +168,10 @@ public class ChatroomActivity extends AppCompatActivity implements NavigationVie
             case R.id.chatroom:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ChatroomFragment()).commit();
+                break;
+
+            case R.id.logout:
+                logout();
                 break;
 
         }

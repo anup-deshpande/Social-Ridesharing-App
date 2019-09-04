@@ -41,15 +41,15 @@
         <item>Female</item>
     </string-array>
     <string name="title_activity_show_profile_user">ShowProfileUser</string>
-    <string name="uNameLabelSP">User Name:</string>
-    <string name="uNameSP" />
-    <string name="lNameLabelSP">LastName:</string>
-    <string name="lastNameSP" />
+    <string name="uNameLabelSP">First Name:</string>
+    <string name="uNameSP" >Text </string>
+    <string name="lNameLabelSP">Last Name:</string>
+    <string name="lastNameSP" >Text </string>
     <string name="genderLabelSP">Gender:</string>
-    <string name="genderSP" />
+    <string name="genderSP"  >Text </string>
     <string name="cityLabelSP">City:</string>
-    <string name="citySP" />
+    <string name="citySP"  >Text </string>
     <string name="emailLabelSP">Email Id:</string>
-    <string name="emailSP" />
+    <string name="emailSP"  >Text </string>
     <string name="btnBackSP">Go Back</string>
 </resources>
